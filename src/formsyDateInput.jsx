@@ -3,7 +3,7 @@ import { HOC } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 import { DateInput } from '@blueprintjs/datetime';
-import * as moment from 'moment';
+import moment from 'moment';
 
 class FormsyDateInput extends Component {
   constructor (props) {
