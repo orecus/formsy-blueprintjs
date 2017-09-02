@@ -76,16 +76,14 @@ class FormsySelect extends Component {
     if (!this.state.focused && this.props.showRequired()) {
       configuration.formGroupClassNames += 'pt-intent-warning ';
       configuration.inputGroupClassNames += 'pt-intent-warning ';
-      configuration.required = <span className='pt-intent-warning' style={{color: '#D9822B'}}>(Required)</span>;
+      configuration.required = <span className='pt-intent-warning' style={{color: '#D9822B'}}> *Required</span>;
     }
 
     if (!this.state.focused && this.props.showError()) {
       configuration.formGroupClassNames += 'pt-intent-danger ';
       configuration.inputGroupClassNames += 'pt-intent-danger ';
-      configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}>(Validation Error)</span>;
-      configuration.validationError = <div className='pt-form-helper-text '>
-        {this.props.getErrorMessage()}
-      </div>;
+      configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}> !</span>;
+      configuration.validationError = <div className='pt-form-helper-text '> {this.props.getErrorMessage()} </div>;
     }
 
     if (configuration.leftIconName !== null) {

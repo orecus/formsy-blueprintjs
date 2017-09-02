@@ -60,10 +60,11 @@ class FormsyDateInput extends Component {
       classNameInput: null,
       type: 'text',
       validationError: null,
+      format: this.props.format || 'YYYY-MM-DD',
       isPristine: this.props.isPristine(),
       errorMessage: this.props.getErrorMessage(),
-      minDate: moment().format(),
-      maxDate: moment().add(50, 'years').format()
+      minDate: moment().format('YYYY-MM-DD'),
+      maxDate: moment().add(100, 'years').format('YYYY-MM-DD')
     };
 
     if (this.props.placeholder) { configuration.placeholder = this.props.placeholder; }
@@ -83,29 +84,30 @@ class FormsyDateInput extends Component {
     if (!this.state.focused && this.props.showRequired()) {
       configuration.classNameInput = 'pt-intent-warning ';
       if (this.props.inline) {
-        configuration.validationError = <span style={{color: '#D9822B'}}>*</span>;
+        configuration.validationError = <span style={{color: '#D9822B'}}> *</span>;
       } else {
-        configuration.validationError = <span style={{color: '#D9822B'}}>*Required</span>;
+        configuration.validationError = <span style={{color: '#D9822B'}}> *Required</span>;
       }
     }
 
     if (!this.state.focused && this.props.showError()) {
       configuration.classNameInput = 'pt-intent-danger ';
       if (this.props.inline) {
-        configuration.validationError = <span style={{color: '#DB3737'}}>!</span>;
+        configuration.validationError = <span style={{color: '#DB3737'}}> !</span>;
       } else {
-        configuration.validationError = <span style={{color: '#DB3737'}}>!{this.getErrorMessage()}</span>;
+        configuration.validationError = <span style={{color: '#DB3737'}}> {this.getErrorMessage()}</span>;
       }
     }
 
-    if (this.props.maxDate) { configuration.maxDate = moment(this.props.maxDate).format(); }
-    if (this.props.minDate) { configuration.minDate = moment(this.props.minDate).format(); }
+    if (this.props.maxDate) { configuration.maxDate = moment(this.props.maxDate).format(configuration.format); }
+    if (this.props.minDate) { configuration.minDate = moment(this.props.minDate).format(configuration.format); }
 
     if (this.props.label) {
       output = <label className={configuration.className}>
         {this.props.label}
         {configuration.validationError}
         <DateInput
+          format={configuration.format}
           className={configuration.classNameInput}
           disabled={configuration.disabled}
           name={this.props.name}
@@ -120,6 +122,7 @@ class FormsyDateInput extends Component {
       </label>;
     } else {
       output = <DateInput
+        format={configuration.format}
         className={configuration.classNameInput}
         disabled={configuration.disabled}
         name={this.props.name}
@@ -143,6 +146,7 @@ FormsyDateInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   inline: PropTypes.bool,
+  format: PropTypes.string,
   initialValue: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
