@@ -10,7 +10,7 @@ class FormsyDateInput extends Component {
     super(props);
 
     this.state = {
-      value: props.initialValue || moment().format(),
+      value: moment().format(),
       focused: false
     };
 
@@ -21,7 +21,7 @@ class FormsyDateInput extends Component {
 
   componentDidMount () {
     if (this.props.initialValue) {
-      this.props.setValue(this.state.value);
+      this.props.setValue(this.props.initialValue);
     } else {
       this.props.setValue(this.props.value);
     }
@@ -61,7 +61,9 @@ class FormsyDateInput extends Component {
       type: 'text',
       validationError: null,
       isPristine: this.props.isPristine(),
-      errorMessage: this.props.getErrorMessage()
+      errorMessage: this.props.getErrorMessage(),
+      minDate: moment().toDate(),
+      maxDate: moment().add(50, 'years').toDate()
     };
 
     if (this.props.placeholder) { configuration.placeholder = this.props.placeholder; }
@@ -96,30 +98,33 @@ class FormsyDateInput extends Component {
       }
     }
 
+    if (this.props.maxDate) { configuration.maxDate = moment(this.props.maxDate).toDate(); }
+    if (this.props.minDate) { configuration.minDate = moment(this.props.minDate).toDate(); }
+
     if (this.props.label) {
       output = <label className={configuration.className}>
         {this.props.label}
         {configuration.validationError}
         <DateInput
-                   className={configuration.classNameInput}
-                   disabled={configuration.disabled}
-                   name={this.props.name}
-                   maxDate={moment(this.props.maxDate).toDate() || moment().add(50, 'years').toDate()}
-                   minDate={moment(this.props.maxDate).toDate() || moment().toDate()}
-                   defaultValue={moment().format()}
-                   value={this.props.getValue()}
-                   onChange={this.changeValue}
-                   onKeyDown={this.onKeyDown}
-                   onFocus={this.onFocus}
-                   onBlur={this.onBlur} />
+          className={configuration.classNameInput}
+          disabled={configuration.disabled}
+          name={this.props.name}
+          maxDate={configuration.maxDate}
+          minDate={configuration.minDate}
+          defaultValue={moment().format()}
+          value={this.props.getValue()}
+          onChange={this.changeValue}
+          onKeyDown={this.onKeyDown}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur} />
       </label>;
     } else {
       output = <DateInput
         className={configuration.classNameInput}
         disabled={configuration.disabled}
         name={this.props.name}
-        maxDate={moment(this.props.maxDate).toDate() || moment().add(50, 'years').toDate()}
-        minDate={moment(this.props.maxDate).toDate() || moment().toDate()}
+        maxDate={configuration.maxDate}
+        minDate={configuration.minDate}
         defaultValue={moment().format()}
         value={this.props.getValue()}
         onChange={this.changeValue}
