@@ -6,7 +6,7 @@ import Stub from '../src/FormsyStub';
 import FormsyDateInput from '../src/formsyDateInput';
 
 describe('FormsyDateInput -> Props', () => {
-  const component = mount(<Stub>{() => <FormsyDateInput required inline fill disabled name='closeDate' label='Close Date' minDate='2017-01-01' maxDate='2017-12-31' initialValue='2017-06-06' />}</Stub>);
+  const component = mount(<Stub>{() => <FormsyDateInput required inline fill disabled name='closeDate' label='Close Date' />}</Stub>);
 
   // console.log(component.find(FormsyDateInput).debug());
 
@@ -29,22 +29,10 @@ describe('FormsyDateInput -> Props', () => {
   it('name', () => {
     expect(component.find(FormsyDateInput).prop('name')).toEqual('closeDate');
   });
-
-  it('initialValue', () => {
-    expect(component.find(FormsyDateInput).prop('initialValue')).toEqual('2017-06-06');
-  });
-
-  it('minDate', () => {
-    expect(component.find(FormsyDateInput).prop('minDate')).toEqual('2017-01-01');
-  });
-
-  it('maxDate', () => {
-    expect(component.find(FormsyDateInput).prop('maxDate')).toEqual('2017-12-31');
-  });
 });
 
 describe('FormsyDateInput -> Classes', () => {
-  const component = mount(<Stub>{() => <FormsyDateInput required fill name='closeDate' label='Close Date' minDate='2017-01-01' maxDate='2017-12-31' initialValue='2017-06-06' />}</Stub>);
+  const component = mount(<Stub>{() => <FormsyDateInput required fill name='closeDate' label='Close Date' />}</Stub>);
 
   it('inline', () => {
     expect(component.find('.pt-label').hasClass('pt-inline')).toEqual(false);

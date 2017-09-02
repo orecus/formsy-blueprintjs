@@ -93,17 +93,17 @@ class FormsyDateInput extends Component {
         {this.props.label}
         {configuration.validationError}
         <DateInput
-                   format={configuration.format}
-                   className={configuration.classNameInput}
-                   disabled={configuration.disabled}
-                   name={this.props.name}
-                   maxDate={configuration.maxDate}
-                   minDate={configuration.minDate}
-                   value={this.props.getValue()}
-                   onChange={this.changeValue}
-                   onKeyDown={this.onKeyDown}
-                   onFocus={this.onFocus}
-                   onBlur={this.onBlur} />
+          format={configuration.format}
+          className={configuration.classNameInput}
+          disabled={configuration.disabled}
+          name={this.props.name}
+          maxDate={configuration.maxDate}
+          minDate={configuration.minDate}
+          value={this.props.getValue()}
+          onChange={this.changeValue}
+          onKeyDown={this.onKeyDown}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur} />
       </label>;
     } else {
       output = <DateInput
@@ -131,12 +131,12 @@ FormsyDateInput.propTypes = {
   name: PropTypes.string,
   inline: PropTypes.bool,
   format: PropTypes.string,
-  initialValue: PropTypes.date,
+  initialValue: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.PropTypes.instanceOf(Date),
+  minDate: PropTypes.PropTypes.instanceOf(Date),
   value: PropTypes.string,
   placeholder: PropTypes.string,
   fill: PropTypes.bool,
-  maxDate: PropTypes.date,
-  minDate: PropTypes.date,
   disabled: PropTypes.bool
 };
 
