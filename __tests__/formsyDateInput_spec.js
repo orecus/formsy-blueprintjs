@@ -44,10 +44,10 @@ describe('FormsyDateInput -> Props', () => {
 });
 
 describe('FormsyDateInput -> Classes', () => {
-  const component = mount(<Stub>{() => <FormsyDateInput required inline fill disabled name='closeDate' label='Close Date' minDate='2017-01-01' maxDate='2017-12-31' initialValue='2017-06-06' />}</Stub>);
+  const component = mount(<Stub>{() => <FormsyDateInput required fill name='closeDate' label='Close Date' minDate='2017-01-01' maxDate='2017-12-31' initialValue='2017-06-06' />}</Stub>);
 
   it('inline', () => {
-    expect(component.find('.pt-label').hasClass('pt-inline')).toEqual(true);
+    expect(component.find('.pt-label').hasClass('pt-inline')).toEqual(false);
   });
 
   it('fill', () => {
@@ -55,10 +55,6 @@ describe('FormsyDateInput -> Classes', () => {
   });
 
   it('disabled', () => {
-    expect(component.find('.pt-label').hasClass('pt-disabled')).toEqual(true);
-  });
-
-  it('required', () => {
-    expect(component.find('.pt-label').hasClass('pt-disabled')).toEqual(true);
+    expect(component.find('.pt-label').hasClass('pt-disabled')).toEqual(false);
   });
 });

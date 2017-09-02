@@ -3,16 +3,12 @@ import { HOC } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 import { DateInput } from '@blueprintjs/datetime';
-import moment from 'moment';
 
 class FormsyDateInput extends Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      value: moment().format(),
-      focused: false
-    };
+    this.state = { focused: false };
 
     this.changeValue = this.changeValue.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -23,19 +19,12 @@ class FormsyDateInput extends Component {
     if (this.props.initialValue) {
       this.props.setValue(this.props.initialValue);
     } else {
-      this.props.setValue(this.props.value);
+      this.props.setValue(this.props.getValue());
     }
   }
 
   changeValue (value) {
-    const newValue = value;
-    const oldValue = this.props.getValue();
-
-    if (oldValue !== newValue) {
-      this.setState({ value: newValue }, () => {
-        this.props.setValue(newValue);
-      });
-    }
+    this.props.setValue(this.props.getValue());
   }
 
   onFocus () {
@@ -47,7 +36,7 @@ class FormsyDateInput extends Component {
     this.props.setValue(this.props.getValue());
 
     if (this.props.onBlur) {
-      this.props.onBlur(this.state.value);
+      this.props.onBlur(this.props.getValue());
     }
   }
 
@@ -63,8 +52,8 @@ class FormsyDateInput extends Component {
       format: this.props.format || 'YYYY-MM-DD',
       isPristine: this.props.isPristine(),
       errorMessage: this.props.getErrorMessage(),
-      minDate: moment().format('YYYY-MM-DD'),
-      maxDate: moment().add(100, 'years').format('YYYY-MM-DD')
+      minDate: this.props.minDate || null,
+      maxDate: this.props.maxDate || null
     };
 
     if (this.props.placeholder) { configuration.placeholder = this.props.placeholder; }
@@ -84,23 +73,20 @@ class FormsyDateInput extends Component {
     if (!this.state.focused && this.props.showRequired()) {
       configuration.classNameInput = 'pt-intent-warning ';
       if (this.props.inline) {
-        configuration.validationError = <span style={{color: '#D9822B'}}> *</span>;
+        configuration.validationError = <span style={{color: '#D9822B'}}>*</span>;
       } else {
-        configuration.validationError = <span style={{color: '#D9822B'}}> *Required</span>;
+        configuration.validationError = <span style={{color: '#D9822B'}}>*Required</span>;
       }
     }
 
     if (!this.state.focused && this.props.showError()) {
       configuration.classNameInput = 'pt-intent-danger ';
       if (this.props.inline) {
-        configuration.validationError = <span style={{color: '#DB3737'}}> !</span>;
+        configuration.validationError = <span style={{color: '#DB3737'}}>!</span>;
       } else {
-        configuration.validationError = <span style={{color: '#DB3737'}}> {this.getErrorMessage()}</span>;
+        configuration.validationError = <span style={{color: '#DB3737'}}>{this.getErrorMessage()}</span>;
       }
     }
-
-    if (this.props.maxDate) { configuration.maxDate = moment(this.props.maxDate).format(configuration.format); }
-    if (this.props.minDate) { configuration.minDate = moment(this.props.minDate).format(configuration.format); }
 
     if (this.props.label) {
       output = <label className={configuration.className}>
@@ -113,7 +99,6 @@ class FormsyDateInput extends Component {
           name={this.props.name}
           maxDate={configuration.maxDate}
           minDate={configuration.minDate}
-          defaultValue={moment().format()}
           value={this.props.getValue()}
           onChange={this.changeValue}
           onKeyDown={this.onKeyDown}
@@ -128,7 +113,6 @@ class FormsyDateInput extends Component {
         name={this.props.name}
         maxDate={configuration.maxDate}
         minDate={configuration.minDate}
-        defaultValue={moment().format()}
         value={this.props.getValue()}
         onChange={this.changeValue}
         onKeyDown={this.onKeyDown}
