@@ -108,11 +108,11 @@ class FormsyText extends Component {
     if (this.props.label) {
       output = <div className={configuration.formGroupClassNames}>
         <label className={configuration.labelClassNames} htmlFor={this.props.name}>
-                   {this.props.label}
-                   {configuration.required}
-                 </label>
+          {this.props.label}
+          {configuration.required}
+        </label>
         <div className='pt-form-content'>
-                   <div className={configuration.inputGroupClassNames}>
+          <div className={configuration.inputGroupClassNames}>
                      {configuration.leftIcon}
                      <input
                        disabled={configuration.disabled}
@@ -128,13 +128,13 @@ class FormsyText extends Component {
                        onBlur={this.onBlur} />
                      {configuration.rightElement}
                    </div>
-                   {configuration.validationError}
-                 </div>
+          {configuration.validationError}
+        </div>
       </div>;
     } else {
       output = <div className={configuration.formGroupClassNames}>
         <div className='pt-form-content'>
-                   <div className={configuration.inputGroupClassNames}>
+          <div className={configuration.inputGroupClassNames}>
                      {configuration.leftIcon}
                      <input
                        disabled={configuration.disabled}
@@ -150,8 +150,8 @@ class FormsyText extends Component {
                        onBlur={this.onBlur} />
                      {configuration.rightElement}
                    </div>
-                   {configuration.validationError}
-                 </div>
+          {configuration.validationError}
+        </div>
       </div>;
     }
 
@@ -162,18 +162,18 @@ class FormsyText extends Component {
 }
 
 FormsyText.propTypes = {
-  label: React.PropTypes.string,
-  name: React.PropTypes.string,
-  inline: React.PropTypes.bool,
-  initialValue: React.PropTypes.string,
-  value: React.PropTypes.string,
-  type: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  leftIconName: React.PropTypes.string,
-  rightElement: React.PropTypes.element,
-  inputRef: React.PropTypes.element,
-  fill: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string,
+  name: PropTypes.string,
+  inline: PropTypes.bool,
+  initialValue: PropTypes.string,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  leftIconName: PropTypes.string,
+  rightElement: PropTypes.element,
+  inputRef: PropTypes.element,
+  fill: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsyText);

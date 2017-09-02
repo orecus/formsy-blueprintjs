@@ -136,14 +136,14 @@ class FormsyRadioGroup extends Component {
 }
 
 FormsyRadioGroup.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  inline: React.PropTypes.bool,
-  initialValue: React.PropTypes.number,
-  placeholder: React.PropTypes.string,
-  leftIconName: React.PropTypes.string,
-  style: React.PropTypes.object,
-  fill: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string.isRequired,
+  inline: PropTypes.bool,
+  initialValue: PropTypes.number,
+  placeholder: PropTypes.string,
+  leftIconName: PropTypes.string,
+  style: PropTypes.object,
+  fill: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsyRadioGroup);

@@ -84,8 +84,8 @@ class FormsySelect extends Component {
       configuration.inputGroupClassNames += 'pt-intent-danger ';
       configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}>(Validation Error)</span>;
       configuration.validationError = <div className='pt-form-helper-text '>
-                                        {this.props.getErrorMessage()}
-                                      </div>;
+        {this.props.getErrorMessage()}
+      </div>;
     }
 
     if (configuration.leftIconName !== null) {
@@ -129,13 +129,13 @@ class FormsySelect extends Component {
 }
 
 FormsySelect.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  inline: React.PropTypes.bool,
-  initialValue: React.PropTypes.number,
-  placeholder: React.PropTypes.string,
-  leftIconName: React.PropTypes.string,
-  fill: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string.isRequired,
+  inline: PropTypes.bool,
+  initialValue: PropTypes.number,
+  placeholder: PropTypes.string,
+  leftIconName: PropTypes.string,
+  fill: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsySelect);

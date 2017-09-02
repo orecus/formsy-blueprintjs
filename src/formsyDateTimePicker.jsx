@@ -75,9 +75,9 @@ class FormsyDateTimePicker extends Component {
 }
 
 FormsyDateTimePicker.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  defaultValue: React.PropTypes.string,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsyDateTimePicker);

@@ -82,12 +82,12 @@ class FormsyCheckbox extends Component {
 }
 
 FormsyCheckbox.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  inline: React.PropTypes.bool,
-  initialValue: React.PropTypes.bool,
-  fill: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  inline: PropTypes.bool,
+  initialValue: PropTypes.bool,
+  fill: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsyCheckbox);

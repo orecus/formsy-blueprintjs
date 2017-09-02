@@ -22,19 +22,13 @@ $ npm install --save formsy-react
 ### ES6 Imports
 
 ```js
-import {FormsyCheckbox} from 'formsy-blueprintjs/lib/formsyCheckbox';
-import {FormsyDateInput} from 'formsy-blueprintjs/lib/formsyDateInput';
-import {FormsyDateInputPicker} from 'formsy-blueprintjs/lib/formsyDateInputPicker';
-import {FormsySelect} from 'formsy-blueprintjs/lib/formsySelectField';
-import {FormsyRadioGroup} from 'formsy-blueprintjs/lib/formsyRadioGroup';
-import {FormsyText} from 'formsy-blueprintjs/lib/formsyTextField';
-import {FormsySwitch} from 'formsy-blueprintjs/lib/formsySwitch';
-```
-
-OR:
-
-```js
-import { FormsyCheckbox, FormsyDateInput, FormsyDateInputPicker, FormsySelect, FormsyRadioGroup, FormsyText, FormsySwitch} from 'formsy-blueprintjs/lib';
+import FormsyCheckbox from 'formsy-blueprintjs/lib/formsyCheckbox';
+import FormsyDateInput from 'formsy-blueprintjs/lib/formsyDateInput';
+import FormsyDateInputPicker from 'formsy-blueprintjs/lib/formsyDateInputPicker';
+import FormsySelect from 'formsy-blueprintjs/lib/formsySelectField';
+import FormsyRadioGroup from 'formsy-blueprintjs/lib/formsyRadioGroup';
+import FormsyText from 'formsy-blueprintjs/lib/formsyTextField';
+import FormsySwitch from 'formsy-blueprintjs/lib/formsySwitch';
 ```
 
 ### Examples
@@ -42,22 +36,16 @@ Short examples on how it can be used.
 
 #### Checkbox
 ```jsx
-import {FormsyCheckbox} from 'formsy-blueprintjs/lib/formsyCheckbox';
-
 <FormsyCheckbox required name='isAdmin' label='Administrator' />
 ```
 
 #### Date Input
 ```jsx
-import {FormsyDateInput} from 'formsy-blueprintjs/lib/formsyDateInput';
-
 <FormsyDateInput required name='expireDate' label='Expire Date' />
 ```
 
 #### Selects
 ```jsx
-import {FormsySelect} from 'formsy-blueprintjs/lib/formsySelectField';
-
 const movies = [{title: 'Gladiator', value: 0}, {title: 'The Matrix', value: 1}];
 
 <FormsySelect required initialValue={0} name='movieId' label='Movies'>
@@ -67,8 +55,6 @@ const movies = [{title: 'Gladiator', value: 0}, {title: 'The Matrix', value: 1}]
 
 #### Radio Groups
 ```jsx
-import {FormsyRadioGroup} from 'formsy-blueprintjs/lib/formsyRadioGroup';
-
 const movies = [{title: 'Gladiator', value: 0}, {title: 'The Matrix', value: 1}];
 
 <FormsyRadioGroup required initialValue={1337} name='movieId' label='Movies'>
@@ -78,15 +64,11 @@ const movies = [{title: 'Gladiator', value: 0}, {title: 'The Matrix', value: 1}]
 
 #### Text Field Input
 ```jsx
-import {FormsyText} from 'formsy-blueprintjs/lib/formsyTextField';
-
 <FormsyText required name='email' validations='isEmail' validationError='This is not an email' placeholder='Example; test@test.com' label='Email' />
 ```
 
 #### Switch
 ```jsx
-import {FormsySwitch} from 'formsy-blueprintjs/lib/formsySwitch';
-
 <FormsySwitch required name='updateMovies' label='Update Movies' />
 ```
 
@@ -146,3 +128,7 @@ See [CHANGELOG.md](https://github.com/orecus/formsy-blueprintjs/blob/master/CHAN
 ## Acknowledgements
 
 Based on [Formsy-Material-UI](https://github.com/mbrookes/formsy-material-ui).
+
+## Contribute
+
+Yes please. :)

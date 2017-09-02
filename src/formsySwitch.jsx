@@ -82,11 +82,11 @@ class FormsySwitch extends Component {
 }
 
 FormsySwitch.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  inline: React.PropTypes.bool,
-  initialValue: React.PropTypes.string,
-  fill: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string.isRequired,
+  inline: PropTypes.bool,
+  initialValue: PropTypes.string,
+  fill: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsySwitch);

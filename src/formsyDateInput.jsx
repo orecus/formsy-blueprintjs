@@ -62,8 +62,8 @@ class FormsyDateInput extends Component {
       validationError: null,
       isPristine: this.props.isPristine(),
       errorMessage: this.props.getErrorMessage(),
-      minDate: moment().toDate(),
-      maxDate: moment().add(50, 'years').toDate()
+      minDate: moment().format(),
+      maxDate: moment().add(50, 'years').format()
     };
 
     if (this.props.placeholder) { configuration.placeholder = this.props.placeholder; }
@@ -83,23 +83,23 @@ class FormsyDateInput extends Component {
     if (!this.state.focused && this.props.showRequired()) {
       configuration.classNameInput = 'pt-intent-warning ';
       if (this.props.inline) {
-        configuration.validationError = <span style={{color: '#D9822B', fontSize: '0.75em'}}>*</span>;
+        configuration.validationError = <span style={{color: '#D9822B'}}>*</span>;
       } else {
-        configuration.validationError = <span style={{color: '#D9822B', fontSize: '0.75em'}}>*Required</span>;
+        configuration.validationError = <span style={{color: '#D9822B'}}>*Required</span>;
       }
     }
 
     if (!this.state.focused && this.props.showError()) {
       configuration.classNameInput = 'pt-intent-danger ';
       if (this.props.inline) {
-        configuration.validationError = <span style={{color: '#DB3737', fontSize: '0.75em'}}>!</span>;
+        configuration.validationError = <span style={{color: '#DB3737'}}>!</span>;
       } else {
-        configuration.validationError = <span style={{color: '#DB3737', fontSize: '0.75em'}}>*{this.getErrorMessage()}</span>;
+        configuration.validationError = <span style={{color: '#DB3737'}}>!{this.getErrorMessage()}</span>;
       }
     }
 
-    if (this.props.maxDate) { configuration.maxDate = moment(this.props.maxDate).toDate(); }
-    if (this.props.minDate) { configuration.minDate = moment(this.props.minDate).toDate(); }
+    if (this.props.maxDate) { configuration.maxDate = moment(this.props.maxDate).format(); }
+    if (this.props.minDate) { configuration.minDate = moment(this.props.minDate).format(); }
 
     if (this.props.label) {
       output = <label className={configuration.className}>
@@ -140,16 +140,16 @@ class FormsyDateInput extends Component {
 }
 
 FormsyDateInput.propTypes = {
-  label: React.PropTypes.string,
-  name: React.PropTypes.string,
-  inline: React.PropTypes.bool,
-  initialValue: React.PropTypes.string,
-  value: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  fill: React.PropTypes.bool,
-  maxDate: React.PropTypes.string,
-  minDate: React.PropTypes.string,
-  disabled: React.PropTypes.bool
+  label: PropTypes.string,
+  name: PropTypes.string,
+  inline: PropTypes.bool,
+  initialValue: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  fill: PropTypes.bool,
+  maxDate: PropTypes.string,
+  minDate: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default HOC(FormsyDateInput);
