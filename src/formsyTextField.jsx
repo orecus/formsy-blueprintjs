@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
 
 import PropTypes from 'prop-types';
 
@@ -18,35 +18,28 @@ class FormsyText extends Component {
   }
 
   componentDidMount () {
-    if (this.props.initialValue) {
-      this.props.setValue(this.state.value);
-    } else {
-      this.props.setValue(this.props.value);
-    }
+    const { initialValue, setValue } = this.props;
+    if (initialValue) setValue(initialValue);
   }
 
-  changeValue (event) {
-    const newValue = event.currentTarget.value;
-    const oldValue = this.props.getValue();
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.isFormSubmitted()) this.showError();
+  }
 
-    if (oldValue !== newValue) {
-      this.setState({ value: newValue }, () => {
-        this.props.setValue(newValue);
-      });
-    }
+  onChange (e, data) {
+    const { value } = data;
+    this.props.setValue(value);
+    if (this.props.onChange) this.props.onChange(e, data);
+    if (this.props.instantValidation) this.showError();
+  }
+
+  onBlur (e, data) {
+    this.showError();
+    if (this.props.onBlur) this.props.onBlur(e, data);
   }
 
   onFocus () {
     this.setState({ focused: true });
-  }
-
-  onBlur (e) {
-    this.setState({ focused: false });
-    this.props.setValue(this.props.getValue());
-
-    if (this.props.onBlur) {
-      this.props.onBlur(this.state.value);
-    }
   }
 
   render () {
@@ -89,14 +82,16 @@ class FormsyText extends Component {
     if (!this.state.focused && this.props.showRequired()) {
       configuration.formGroupClassNames += 'pt-intent-warning ';
       configuration.inputGroupClassNames += 'pt-intent-warning ';
-      configuration.required = <span className='pt-intent-warning' style={{color: '#D9822B'}}> *Required</span>;
+      configuration.required = <span className='pt-intent-warning' style={{color: '#D9822B'}}>*Required</span>;
     }
 
     if (!this.state.focused && this.props.showError()) {
       configuration.formGroupClassNames += 'pt-intent-danger ';
       configuration.inputGroupClassNames += 'pt-intent-danger ';
-      configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}> !</span>;
-      configuration.validationError = <div className='pt-form-helper-text '> {this.props.getErrorMessage()} </div>;
+      configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}>!</span>;
+      configuration.validationError = <div className='pt-form-helper-text '>
+        {this.props.getErrorMessage()}
+      </div>;
     }
 
     if (configuration.leftIconName !== null) {
@@ -174,4 +169,4 @@ FormsyText.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsyText);
+export default withFormsy(FormsyText);
