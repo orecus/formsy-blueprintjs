@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 import { RadioGroup, Radio } from '@blueprintjs/core';
@@ -9,7 +9,7 @@ class FormsyRadioGroup extends Component {
     super(props);
 
     this.state = {
-      value: props.initialValue || 0,
+      value: props.value || props.initialValue || 0,
       focused: false
     };
 
@@ -144,4 +144,4 @@ FormsyRadioGroup.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsyRadioGroup);
+export default withFormsy(FormsyRadioGroup);

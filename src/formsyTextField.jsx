@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
+import { Icon } from "@blueprintjs/core";
 
 import PropTypes from 'prop-types';
 
@@ -7,10 +8,7 @@ class FormsyText extends Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      value: props.initialValue || '',
-      focused: false
-    };
+    this.state = { focused: false };
 
     this.changeValue = this.changeValue.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -18,35 +16,24 @@ class FormsyText extends Component {
   }
 
   componentDidMount () {
-    if (this.props.initialValue) {
-      this.props.setValue(this.state.value);
-    } else {
-      this.props.setValue(this.props.value);
-    }
+    const { initialValue, setValue } = this.props;
+
+    if (initialValue) { this.props.setValue(initialValue); }
   }
 
   changeValue (event) {
-    const newValue = event.currentTarget.value;
-    const oldValue = this.props.getValue();
+    this.props.setValue(event.currentTarget.value);
+  }
 
-    if (oldValue !== newValue) {
-      this.setState({ value: newValue }, () => {
-        this.props.setValue(newValue);
-      });
-    }
+  onBlur (e, data) {
+    this.setState({ focused: false });
+    this.props.setValue(this.props.getValue());
+
+    if (this.props.onBlur) { this.props.onBlur(this.state.value); }
   }
 
   onFocus () {
     this.setState({ focused: true });
-  }
-
-  onBlur (e) {
-    this.setState({ focused: false });
-    this.props.setValue(this.props.getValue());
-
-    if (this.props.onBlur) {
-      this.props.onBlur(this.state.value);
-    }
   }
 
   render () {
@@ -64,6 +51,7 @@ class FormsyText extends Component {
       required: null,
       rightElement: null,
       leftIconName: null,
+      iconSize: this.props.iconSize || 16,
       leftIcon: null,
       isPristine: this.props.isPristine(),
       errorMessage: this.props.getErrorMessage()
@@ -89,18 +77,20 @@ class FormsyText extends Component {
     if (!this.state.focused && this.props.showRequired()) {
       configuration.formGroupClassNames += 'pt-intent-warning ';
       configuration.inputGroupClassNames += 'pt-intent-warning ';
-      configuration.required = <span className='pt-intent-warning' style={{color: '#D9822B'}}> *Required</span>;
+      configuration.required = <span className='pt-intent-warning' style={{color: '#D9822B'}}>*Required</span>;
     }
 
     if (!this.state.focused && this.props.showError()) {
       configuration.formGroupClassNames += 'pt-intent-danger ';
       configuration.inputGroupClassNames += 'pt-intent-danger ';
-      configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}> !</span>;
-      configuration.validationError = <div className='pt-form-helper-text '> {this.props.getErrorMessage()} </div>;
+      configuration.required = <span className='pt-intent-danger' style={{color: '#DB3737'}}>!</span>;
+      configuration.validationError = <div className='pt-form-helper-text '>
+        {this.props.getErrorMessage()}
+      </div>;
     }
 
     if (configuration.leftIconName !== null) {
-      configuration.leftIcon = <span className={'pt-icon pt-icon-' + configuration.leftIconName} />;
+      configuration.leftIcon = <Icon icon={configuration.leftIconName} iconSize={configuration.iconSize} />;
     }
 
     if (this.props.label) {
@@ -174,4 +164,4 @@ FormsyText.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsyText);
+export default withFormsy(FormsyText);

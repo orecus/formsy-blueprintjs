@@ -1,0 +1,2 @@
+--require __tests__/index.js
+--require chai

@@ -1,5 +1,8 @@
 ## Changelog
 
+### v0.0.6
+* Updated dependencies to latest
+
 ### v0.0.5
 * Fixed ```formsyDateInput.jsx```
 * Started looking at tests
