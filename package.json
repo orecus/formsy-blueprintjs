@@ -1,6 +1,6 @@
 {
   "name": "formsy-blueprintjs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Martin Carlsson",
   "description": "A formsy-react version of Blueprint components",
   "bugs": {
