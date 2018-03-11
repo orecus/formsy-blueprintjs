@@ -19,6 +19,8 @@ $ npm install --save formsy-react
 
 ## Usage
 
+The package should work just fine, but it's largly untested and there could be bugs. Feel free to contribute and submit PR's.
+
 ### ES6 Imports
 
 ```js

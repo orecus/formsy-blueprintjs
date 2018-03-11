@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 import { Checkbox } from '@blueprintjs/core';
@@ -8,7 +8,7 @@ class FormsyCheckbox extends Component {
   constructor (props) {
     super(props);
 
-    this.state = { value: false };
+    this.state = { value: props.checked || props.initialValue || false };
     this.changeValue = this.changeValue.bind(this);
     this.onFocus = this.onFocus.bind(this);
   }
@@ -24,7 +24,7 @@ class FormsyCheckbox extends Component {
   }
 
   changeValue (event) {
-    const newValue = event.currentTarget.value;
+    const newValue = event.target.checked;
     const oldValue = this.props.getValue();
 
     if (newValue === 'on' && oldValue === true) {
@@ -90,4 +90,4 @@ FormsyCheckbox.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsyCheckbox);
+export default withFormsy(FormsyCheckbox);

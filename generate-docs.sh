@@ -6,9 +6,39 @@ var docsToMarkdown = require("react-docs-markdown");
 
 var docList = [
   {
-    name: "CheckboxGroup",
+    name: "formsyTextField",
     file: "./src/formsyTextField.jsx",
     out: "./docs/formsyTextField.md"
+  },
+  {
+    name: "formsyCheckbox",
+    file: "./src/formsyCheckbox.jsx",
+    out: "./docs/formsyCheckbox.md"
+  },
+  {
+    name: "formsyDateInput",
+    file: "./src/formsyDateInput.jsx",
+    out: "./docs/formsyDateInput.md"
+  },
+  {
+    name: "formsyDateTimePicker",
+    file: "./src/formsyDateTimePicker.jsx",
+    out: "./docs/formsyDateTimePicker.md"
+  },
+  {
+    name: "formsyRadioGroup",
+    file: "./src/formsyRadioGroup.jsx",
+    out: "./docs/formsyRadioGroup.md"
+  },
+  {
+    name: "formsySelectField",
+    file: "./src/formsySelectField.jsx",
+    out: "./docs/formsySelectField.md"
+  },
+  {
+    name: "formsySwitch",
+    file: "./src/formsySwitch.jsx",
+    out: "./docs/formsySwitch.md"
   }
 ];
 

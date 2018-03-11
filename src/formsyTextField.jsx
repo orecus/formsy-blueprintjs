@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withFormsy } from 'formsy-react';
+import { Icon } from "@blueprintjs/core";
 
 import PropTypes from 'prop-types';
 
@@ -7,10 +8,7 @@ class FormsyText extends Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      value: props.initialValue || '',
-      focused: false
-    };
+    this.state = { focused: false };
 
     this.changeValue = this.changeValue.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -19,23 +17,19 @@ class FormsyText extends Component {
 
   componentDidMount () {
     const { initialValue, setValue } = this.props;
-    if (initialValue) setValue(initialValue);
+
+    if (initialValue) { this.props.setValue(initialValue); }
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.isFormSubmitted()) this.showError();
-  }
-
-  onChange (e, data) {
-    const { value } = data;
-    this.props.setValue(value);
-    if (this.props.onChange) this.props.onChange(e, data);
-    if (this.props.instantValidation) this.showError();
+  changeValue (event) {
+    this.props.setValue(event.currentTarget.value);
   }
 
   onBlur (e, data) {
-    this.showError();
-    if (this.props.onBlur) this.props.onBlur(e, data);
+    this.setState({ focused: false });
+    this.props.setValue(this.props.getValue());
+
+    if (this.props.onBlur) { this.props.onBlur(this.state.value); }
   }
 
   onFocus () {
@@ -57,6 +51,7 @@ class FormsyText extends Component {
       required: null,
       rightElement: null,
       leftIconName: null,
+      iconSize: this.props.iconSize || 16,
       leftIcon: null,
       isPristine: this.props.isPristine(),
       errorMessage: this.props.getErrorMessage()
@@ -95,7 +90,7 @@ class FormsyText extends Component {
     }
 
     if (configuration.leftIconName !== null) {
-      configuration.leftIcon = <span className={'pt-icon pt-icon-' + configuration.leftIconName} />;
+      configuration.leftIcon = <Icon icon={configuration.leftIconName} iconSize={configuration.iconSize} />;
     }
 
     if (this.props.label) {

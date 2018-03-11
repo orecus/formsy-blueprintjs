@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 import { DateTimePicker } from '@blueprintjs/datetime';
@@ -80,4 +80,4 @@ FormsyDateTimePicker.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsyDateTimePicker);
+export default withFormsy(FormsyDateTimePicker);

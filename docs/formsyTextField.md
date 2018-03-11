@@ -1,4 +1,4 @@
-# CheckboxGroup
+# formsyTextField
 
 ## Props
 | Name         | Type    | Default | Required | Description |

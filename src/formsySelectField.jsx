@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 class FormsySelect extends Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      focused: false
-    };
+    this.state = { focused: false };
 
     this.changeValue = this.changeValue.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -136,4 +134,4 @@ FormsySelect.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsySelect);
+export default withFormsy(FormsySelect);

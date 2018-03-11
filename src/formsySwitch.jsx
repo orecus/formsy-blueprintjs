@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HOC } from 'formsy-react';
+import { withFormsy } from 'formsy-react';
 import PropTypes from 'prop-types';
 
 import { Switch } from '@blueprintjs/core';
@@ -8,22 +8,19 @@ class FormsySwitch extends Component {
   constructor (props) {
     super(props);
 
-    this.state = { value: this.props.initialValue || false };
+    this.state = { value: props.checked || props.initialValue || false };
+
     this.changeValue = this.changeValue.bind(this);
     this.onFocus = this.onFocus.bind(this);
   }
 
   componentDidMount () {
-    if (this.props.initialValue) {
-      this.props.setValue(this.state.value);
-    } else {
-      this.setState({ value: this.props.value || false }, () => {
-        this.props.setValue(this.state.value);
-      });
-    }
+    const { initialValue, setValue } = this.props;
+
+    if (initialValue) { this.props.setValue(initialValue); }
   }
 
-  changeValue (event) {
+  changeValue(event) {
     const newValue = event.currentTarget.value;
     const oldValue = this.props.getValue();
 
@@ -89,4 +86,4 @@ FormsySwitch.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default HOC(FormsySwitch);
+export default withFormsy(FormsySwitch);
